@@ -15,6 +15,11 @@ dist-ssr
 public/
 src/assets/react.svg
 README.md
+eslint.config.js
+index.html
+package-lock.json
+package.json
+vite.config.js
 
 # Editor directories and files
 .vscode/*
