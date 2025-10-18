@@ -7,7 +7,7 @@ const Footer = () => {
             textAlign: "center",
             fontSize: 24,
             width: "100vw",
-            height: 100,
+
             position: "fixed",
             bottom: 0,
             left: 0,
@@ -21,7 +21,7 @@ const Footer = () => {
 
     return(
         <div style={styles.footer}>
-            Grupa: Alicja Nawój, Ola Bałut, Damian Kołpa, Łukasz Kruczek, Piotr Magiera
+            Grupa: Alicja Nawój, Aleksandra Bałut, Damian Kołpa, Łukasz Kruczek, Piotr Magiera
         </div>
     )
 }
