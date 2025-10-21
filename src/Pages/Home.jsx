@@ -3,21 +3,12 @@ import GameWithMenu from "../components/GameWithMenu.jsx";
 
 function Home() {
     return (
-        <div
-            style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                backgroundColor: "black",
-                color: "white",
-                width: "100%",
-                height: "720px",
-                marginTop:"50px"
-            }}
-        >
-            <GameWithMenu />
+        <div style={{ backgroundColor: 'black', color:"white",textAlign:"center",width:"1024px",height:"720px"}}>
+            <GameWithMenu/>
         </div>
+
     );
 }
+
 
 export default Home;

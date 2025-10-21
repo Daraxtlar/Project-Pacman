@@ -1,94 +1,23 @@
-/* Kontener gry */
-.game-container {
-    width: 1024px;
-    height: 720px;
-    background-color: black;
-    overflow: hidden;
-    position: relative;
-}
-
-/* Overlay menu */
-.menu-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 1024px;
-    height: 720px;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Przycisk menu w rogu */
-.menu-toggle-button {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    z-index: 20;
-}
-
-/* Nagłówek menu */
-.menu-title {
-    color: white;
-    margin-bottom: 1rem;
-}
-
-/* Kontener przycisków menu głównego */
-.menu-buttons {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
-
-/* Kontener logowania */
-.login-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    color: white;
-}
-
-/* Przycisk */
-.buttons {
+.buttons{
     background-color: black;
     border: 1px solid yellow;
     color: white;
     text-align: center;
     width: 160px;
     height: 50px;
-    margin: 0;
-    box-sizing: border-box;
-    max-width: 100%;
+    margin:10px;
 }
-
-/* Pole input */
-.inputPass {
+.inputPass{
     background-color: #888888;
     width: 160px;
     height: 60px;
     text-align: center;
-    box-sizing: border-box;
-    max-width: 100%;
+    margin: 10px;
 }
-
-/* Styl placeholdera */
-.inputPass::placeholder {
-    color: white;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 14px;
-}
-
-/* Sekcja wyników */
-#scores {
+#scores{
     background-color: black;
     border: 1px solid yellow;
     color: white;
     text-align: center;
     width: 60%;
-    margin-top: 1rem;
 }

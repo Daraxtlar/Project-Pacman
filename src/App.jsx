@@ -1,17 +1,25 @@
-import { useState } from 'react'
-import './App.css'
-import Header from "./components/Header.jsx";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home.jsx";
+import AppNavbar from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
-import Home from "./Pages/Home.jsx";
+
 function App() {
 
-  return (
-    <>
-        <Header></Header>
-        <Home/>
-        <Footer></Footer>
-    </>
-  )
+
+    return (
+        <Router>
+            <div className="d-flex flex-column min-vh-100 ">
+                <AppNavbar />
+                <main className="flex-grow-1 d-flex justify-content-center align-items-center">
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                    </Routes>
+                </main>
+                <Footer />
+            </div>
+        </Router>
+    );
 }
 
-export default App
+export default App;
