@@ -1,21 +1,17 @@
 import React, { useState } from "react";
 import Game from "./Game.jsx";
-import './menu.css'
+import Login from "./Login.jsx";
+import Scores from "./Scores.jsx";
+import "./menu.css";
+
 function GameWithMenu() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [activeMenu, setActiveMenu] = useState(null);
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
 
     const openMenu = () => {
         setMenuOpen(true);
         setActiveMenu(null);
     };
-
-    const handleLogin = () => {
-        console.log("Logowanie:", username, password);
-    };
-
 
     return (
         <div
@@ -44,8 +40,6 @@ function GameWithMenu() {
                 </button>
             )}
 
-
-
             {menuOpen && (
                 <div
                     className="d-flex flex-column justify-content-center align-items-center"
@@ -64,42 +58,24 @@ function GameWithMenu() {
 
                     {!activeMenu && (
                         <>
-                            <button className="buttons" onClick={() => setActiveMenu("login")}>Login</button>
-                            <button className="buttons" onClick={() => setMenuOpen(false)}>Play</button>
-                            <button className="buttons" onClick={() => setActiveMenu("scores")}>Scores</button>
+                            <button className="buttons" onClick={() => setActiveMenu("login")}>
+                                Login
+                            </button>
+                            <button className="buttons" onClick={() => setMenuOpen(false)}>
+                                Play
+                            </button>
+                            <button className="buttons" onClick={() => setActiveMenu("scores")}>
+                                Scores
+                            </button>
                         </>
                     )}
 
                     {activeMenu === "login" && (
-                        <div className="text-white w-50">
-                            <input
-                                type="text"
-                                placeholder="Username"
-                                className="form-control mb-2 inputPass"
-                                value={username}
-                                onChange={e => setUsername(e.target.value)}
-                            />
-                            <input
-                                type="password"
-                                placeholder="Password"
-                                className="form-control mb-2 inputPass"
-                                value={password}
-                                onChange={e => setPassword(e.target.value)}
-                            />
-                            <button className="buttons" onClick={handleLogin}>Log in</button>
-                        </div>
+                        <Login onBack={() => setActiveMenu(null)} />
                     )}
 
                     {activeMenu === "scores" && (
-                        <div  id={"scores"}>
-                            <h3 className="mb-3">🏆 Best Scores</h3>
-                            <ul className="list-unstyled">
-
-                            </ul>
-                        </div>
-
-
-
+                        <Scores onBack={() => setActiveMenu(null)} />
                     )}
                 </div>
             )}
