@@ -3,6 +3,7 @@ import Game from "./Game.jsx";
 import Login from "./Login.jsx";
 import Scores from "./Scores.jsx";
 import "./menu.css";
+import "./Header.css";
 
 function GameWithMenu() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -15,26 +16,14 @@ function GameWithMenu() {
 
     return (
         <div
-            className="position-relative"
-            style={{
-                width: "1024px",
-                height: "720px",
-                backgroundColor: "black",
-                overflow: "hidden",
-            }}
+            className="position-relative main-div"
         >
             <Game />
 
             {(!menuOpen || activeMenu !== null) && (
                 <button
-                    className="buttons"
+                    className="buttons btn-open-menu"
                     onClick={openMenu}
-                    style={{
-                        position: "absolute",
-                        bottom: "20px",
-                        left: "20px",
-                        zIndex: 20,
-                    }}
                 >
                     {activeMenu ? "Back To Menu" : "Menu"}
                 </button>
@@ -42,17 +31,8 @@ function GameWithMenu() {
 
             {menuOpen && (
                 <div
-                    className="d-flex flex-column justify-content-center align-items-center"
-                    style={{
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                        width: "1024px",
-                        height: "720px",
-                        backgroundColor: "rgba(0,0,0,0.7)",
-                        zIndex: 10,
-                        padding: "2rem",
-                    }}
+                    className="d-flex flex-column justify-content-center align-items-center menu-open-div"
+
                 >
                     <h2 className="text-white mb-3">Pause Menu</h2>
 

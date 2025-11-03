@@ -1,23 +1,22 @@
-/* Główny pasek nawigacji */
+
 .header-navbar {
     background-color: #000033;
     border-bottom: 4px solid #FFA500;
+    min-height: 105px;
 }
 
-/* Kontener wewnętrzny */
+
 .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-/* Pudełka po bokach */
 .header-box {
     color: #fff;
     font-size: 1.2rem;
 }
 
-/* Styl dla informacji o punktach i życiu / graczu */
 .header-info {
     background-color: black;
     padding: 20px;
@@ -25,7 +24,6 @@
     border-radius: 2%;
 }
 
-/* Styl dla nazwy PACMAN pośrodku */
 .header-brand {
     font-size: 2rem !important;
     color: #FFA500 !important;

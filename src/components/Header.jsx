@@ -10,11 +10,6 @@ function Header() {
             <Container className={"header-container"}>
 
                 <div className={"header-box"}>
-                    <div className={"header-info"}>
-                        <span className="me-4">Score: 0</span><br/>
-                        <span>Lives: 3</span>
-                    </div>
-
                 </div>
 
                 <Navbar.Brand as={Link} to="/" className={"header-brand"}>

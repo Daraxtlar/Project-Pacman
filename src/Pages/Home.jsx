@@ -1,9 +1,10 @@
 import React from "react";
 import GameWithMenu from "../components/GameWithMenu.jsx";
+import "./Home.css"
 
 function Home() {
     return (
-        <div style={{ backgroundColor: 'black', color:"white",textAlign:"center",width:"1024px",height:"720px"}}>
+        <div className={"home-style"}>
             <GameWithMenu/>
         </div>
 
