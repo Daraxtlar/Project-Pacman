@@ -1,29 +1,11 @@
 import React from "react";
 
-const Footer = () => {
-    const styles = {
-        footer: {
-            backgroundColor: "blue",
-            textAlign: "center",
-            fontSize: 24,
-            width: "100vw",
-            height: 100,
-            position: "fixed",
-            bottom: 0,
-            left: 0,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-        }
-    }
-
-
-
-    return(
-        <div style={styles.footer}>
-            Grupa: Alicja Nawój, Ola Bałut, Damian Kołpa, Łukasz Kruczek, Piotr Magiera
-        </div>
-    )
+function Footer() {
+    return (
+        <footer  style={{ backgroundColor: '#000033', borderBottom: '4px solid #FFA500',color:"white",textAlign:"center",fontSize:"140%" }} >
+            <p className="mb-0">Grupa nr.3 Piotr Magiera, Alicja Nawój, Damian kołpa, Łukasz Kruczek, Aleksandra Bałut</p>
+        </footer>
+    );
 }
 
 export default Footer;
