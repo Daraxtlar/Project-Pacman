@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Game from "./Game.jsx";
-import './menu.css'
+import './Menu.css'
 function GameWithMenu({ setUsername }) {
     const [menuOpen, setMenuOpen] = useState(false);
     const [activeMenu, setActiveMenu] = useState(null);
