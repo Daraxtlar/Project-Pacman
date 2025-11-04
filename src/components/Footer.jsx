@@ -1,8 +1,9 @@
 import React from "react";
+import "./Footer.css"
 
 function Footer() {
     return (
-        <footer  style={{ backgroundColor: '#000033', borderBottom: '4px solid #FFA500',color:"white",textAlign:"center",fontSize:"140%" }} >
+        <footer  className="footer-style" >
             <p className="mb-0">Grupa nr.3 Piotr Magiera, Alicja Nawój, Damian kołpa, Łukasz Kruczek, Aleksandra Bałut</p>
         </footer>
     );
