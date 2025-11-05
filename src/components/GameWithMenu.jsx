@@ -4,10 +4,12 @@ import Login from "./Login.jsx";
 import Scores from "./Scores.jsx";
 import "./menu.css";
 import "./Header.css";
+import GameOver from "./GameOver.jsx";
 
 function GameWithMenu() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [activeMenu, setActiveMenu] = useState(null);
+    const [showGameOver, setShowGameOver] = useState(true);
 
     const openMenu = () => {
         setMenuOpen(true);
@@ -19,6 +21,11 @@ function GameWithMenu() {
             className="position-relative main-div"
         >
             <Game />
+
+            {showGameOver && (
+                <GameOver onPlayAgain={() => setShowGameOver(false)} />
+            )}
+
 
             {(!menuOpen || activeMenu !== null) && (
                 <button

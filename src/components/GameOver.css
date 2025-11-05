@@ -1,0 +1,169 @@
+
+#frontLayout {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1024px;
+    height: 720px;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 30;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+
+#GameOver {
+    position: relative;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 100px;
+    pointer-events: none;
+}
+
+.letter {
+    display: inline-block;
+    font-size: 100px;
+    font-weight: bold;
+    line-height: 0.9;
+    background-image: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet, red);
+    background-size: 1000% 1000%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: rainbowFlow 8s linear infinite;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+
+.letter.eaten {
+    opacity: 0;
+    transform: scale(0.6) translateY(20px);
+    pointer-events: none;
+}
+
+@keyframes rainbowFlow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+#AgainBT {
+    background-color: black;
+    border: 1px solid yellow;
+    color: white;
+    text-align: center;
+    width: 160px;
+    height: 50px;
+    margin: 10px;
+    cursor: pointer;
+}
+.pacmanAnim{
+    position: absolute;
+    top: 50%;
+    left: -180px;
+    transform: translateY(-100%);
+    width: 100px;
+    height: 100px;
+    animation: movePacman 2.5s linear forwards;
+    z-index: 31;
+    &:before,&:after{
+        content:'';
+        display:block;
+        width:0;
+        height:0;
+        position:absolute;
+        top:0;left:-180px;
+        border:100px solid yellow;
+        border-right-color:transparent;
+        border-radius:100px;
+    }
+    &:before{
+        animation: pac1 .25s infinite linear alternate;
+    }
+    &:after{
+        animation: pac2 .25s infinite linear alternate;
+    }
+}
+@keyframes pac1{
+    from{
+        transform:rotate(0);
+    }
+    to{
+        transform:rotate(45deg);
+    }
+}
+@keyframes pac2{
+    from{
+        transform:rotate(0);
+    }
+    to{
+        transform:rotate(-45deg);
+    }
+}
+@keyframes movePacman {
+    0% {
+        left: -120px;
+    }
+    100% {
+        left: 180%;
+    }
+}
+
+.pacmanAnimEye{
+    position: absolute;
+    top: 30px;
+    right: 160px;
+    width: 20px;
+    height: 20px;
+    background-color: black;
+    border-radius: 50%;
+    z-index: 100;
+}
+
+.shape {
+    width: 200px;
+    height: 200px;
+    background: yellow;
+    animation: morph 1s infinite linear;
+    clip-path: polygon(50% 0%, 80% 10%, 100% 35%, 100% 70%, 80% 90%, 50% 100%, 20% 90%, 0% 70%, 0% 35%, 20% 10%);
+}
+@keyframes morph {
+    0% {
+        clip-path: polygon(50% 0%, 50% 8%, 100% 35%, 100% 70%, 80% 90%, 50% 100%, 20% 90%, 0% 70%, 0% 35%, 50% 8%);
+    }
+
+    12% {
+        clip-path: polygon(50% 50%, 80% 10%, 100% 35%, 100% 70%, 80% 90%, 50% 100%, 20% 90%, 0% 70%, 0% 35%, 20% 10%);
+
+    }
+
+    25% {
+        clip-path: polygon(50% 50%, 91% 17%, 100% 35%, 100% 70%, 80% 90%, 50% 100%, 20% 90%, 0% 70%, 0% 35%, 10% 16%);
+    }
+
+    37% {
+        clip-path: polygon(50% 50%, 100% 36%, 100% 35%, 100% 70%, 80% 90%, 50% 100%, 20% 90%, 0% 70%, 0% 35%, 0 35%);
+    }
+
+    50% {
+        clip-path: polygon(50% 50%, 100% 51%, 100% 51%, 100% 70%, 80% 90%, 50% 100%, 20% 90%, 0% 70%, 0 50%, 0 51%);
+    }
+
+    62% {
+        clip-path: polygon(50% 50%, 90% 79%, 90% 78%, 90% 79%, 80% 90%, 50% 100%, 20% 90%, 11% 80%, 10% 81%, 11% 81%);
+    }
+    75% {
+        clip-path: polygon(50% 50%, 71% 94%, 70% 94%, 71% 94%, 71% 94%, 50% 100%, 30% 94%, 30% 94%, 30% 94%, 29% 94%);
+    }
+    87% {
+        clip-path: polygon(50% 50%, 49% 100%, 49% 100%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 49% 100%, 49% 100%, 50% 100%);
+    }
+    100% {
+        clip-path: polygon(50% 100%);
+    }
+}
