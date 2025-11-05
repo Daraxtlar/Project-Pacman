@@ -2,15 +2,17 @@ import React, { useState } from "react";
 import Game from "./Game.jsx";
 import Login from "./Login.jsx";
 import Scores from "./Scores.jsx";
-import './Menu.css'
+import "./menu.css";
 import "./Header.css";
+import GameOver from "./GameOver.jsx";
 
-function GameWithMenu({ setUsername }) {
+function GameWithMenu() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [activeMenu, setActiveMenu] = useState(null);
     const [username, setLocalUsername] = useState("");
     const [password, setPassword] = useState("");
     const [scores, setScores] = useState([]);
+    const [showGameOver, setShowGameOver] = useState(true);
 
     const openMenu = () => {
         setMenuOpen(true);
@@ -19,39 +21,52 @@ function GameWithMenu({ setUsername }) {
 
     return (
         <div
-            className="position-relative main-div">
-
+            className="position-relative main-div"
+        >
             <Game />
+
+            {showGameOver && (
+                <GameOver onPlayAgain={() => setShowGameOver(false)} />
+            )}
+
 
             {(!menuOpen || activeMenu !== null) && (
                 <button
                     className="buttons btn-open-menu"
-                    onClick={openMenu}>
-
+                    onClick={openMenu}
+                >
                     {activeMenu ? "Back To Menu" : "Menu"}
                 </button>
             )}
 
             {menuOpen && (
-                <div className="d-flex flex-column justify-content-center align-items-center menu-open-div">
+                <div
+                    className="d-flex flex-column justify-content-center align-items-center menu-open-div"
+
+                >
                     <h2 className="text-white mb-3">Pause Menu</h2>
 
                     {!activeMenu && (
                         <>
-                            <button className="buttons" onClick={() => setActiveMenu("login")}>Login</button>
-                            <button className="buttons" onClick={() => setMenuOpen(false)}>Play</button>
-                            <button className="buttons" onClick={() => { setActiveMenu("scores"); fetchScores(); }}>Scores</button>
+                            <button className="buttons" onClick={() => setActiveMenu("login")}>
+                                Login
+                            </button>
+                            <button className="buttons" onClick={() => setMenuOpen(false)}>
+                                Play
+                            </button>
+                            <button className="buttons" onClick={() => setActiveMenu("scores")}>
+                                Scores
+                            </button>
                         </>
                     )}
 
-                {activeMenu === "login" && (
-                    <Login onBack={() => setActiveMenu(null)} />
-                )}
+                    {activeMenu === "login" && (
+                        <Login onBack={() => setActiveMenu(null)} />
+                    )}
 
-                {activeMenu === "scores" && (
-                    <Scores onBack={() => setActiveMenu(null)} />
-                )}
-
+                    {activeMenu === "scores" && (
+                        <Scores onBack={() => setActiveMenu(null)} />
+                    )}
                 </div>
             )}
         </div>
