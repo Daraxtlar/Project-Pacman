@@ -4,8 +4,10 @@ import "./Tilemap.css"
 
 function Game() {
 
-    const [getTilemap, setTilemap] = useState([[{}]]);
-    const tilemapSize = { x: 21, y: 17, pixelsInTile: 32 };
+    const tilemapSize = { x: 21, y: 17, tileSize: 32 };
+    const [tilemap, setTilemap] = useState([]);
+    const [floatingTile, setFloatingTile] = useState({x: 10*tilemapSize.tileSize, y: 9*tilemapSize.tileSize});
+    const [debugState, setDebug] = useState(false);
 
     const saveScore = async (score) => {
         try {
@@ -25,13 +27,38 @@ function Game() {
     };
 
     const generateTilemap = () => {
+        const wallPositions = [
+            {x: 10, y: 1}, {x: 10, y: 2},
+            {x: 2, y: 2}, {x: 3, y: 2}, {x: 4, y: 2}, {x: 6, y: 2}, {x: 7, y: 2}, {x: 8, y: 2}, {x: 1, y: 4}, {x: 2, y: 4},
+            {x: 4, y: 4}, {x: 5, y: 4}, {x: 6, y: 4}, {x: 7, y: 4}, {x: 8, y: 4},
+            {x: 10, y: 4},
+            {x: 6, y: 5}, {x: 6, y: 6},
+            {x: 2, y: 6}, {x: 3, y: 6}, {x: 4, y: 6},
+            {x: 2, y: 8}, {x: 3, y: 8}, {x: 4, y: 8}, {x: 2, y: 9}, {x: 3, y: 9}, {x: 4, y: 9}, {x: 2, y: 10}, {x: 3, y: 10}, {x: 4, y: 10},
+            {x: 6, y: 8}, {x: 6, y: 9}, {x: 6, y: 10},
+            {x: 2, y: 12}, {x: 3, y: 12}, {x: 4, y: 12}, {x: 4, y: 13}, {x: 4, y: 14}, {x: 2, y: 14},
+            {x: 6, y: 12}, {x: 7, y: 12}, {x: 8, y: 12}, {x: 6, y: 13}, {x: 6, y: 14},
+            {x: 8, y: 14}, {x: 9, y: 14}, {x: 10, y: 14},
+            {x: 10, y: 12}, {x: 10, y: 11}, {x: 8, y: 10}, {x: 9, y: 10}, {x: 10, y: 10},
+            {x: 9, y: 6}, {x: 8, y: 6}, {x: 8, y: 7}, {x: 8, y: 8}, {x: 9, y: 8}, {x: 10, y: 8},
+        ];
         let createdTilemap = [];
+
         for (let j = 0; j < tilemapSize.y; j++) {
             createdTilemap[j] = [];
             for (let i = 0; i < tilemapSize.x; i++) {
-                createdTilemap[j][i] = { collision: false };
+                createdTilemap[j][i] = {
+                    wall: (
+                        wallPositions.some(wall =>
+                            ( (wall.x === i || wall.x === tilemapSize.x-i-1 ) && wall.y === j)
+                        ) ||
+                        (i === 0 || i === tilemapSize.x-1) ||
+                        (j === 0 || j === tilemapSize.y-1)
+                    )
+                };
             }
         }
+
         setTilemap(createdTilemap);
     }
 
@@ -39,25 +66,56 @@ function Game() {
         generateTilemap();
     }, []);
 
+
+    window.debug = (showDebugs = null) => {
+        setDebug( showDebugs===null ? (!debugState) : showDebugs );
+    }
+    window.setFTilePosInPx = (X = 0, Y = 0) => {
+        let currentFloatingTile = {x: X, y: Y};
+        setFloatingTile(currentFloatingTile);
+        console.log(floatingTile);
+        console.log(currentFloatingTile);
+    }
+    window.setFTilePosInTiles = (X = 0, Y = 0) => {
+        let currentFloatingTile = {x: X * tilemapSize.tileSize, y: Y * tilemapSize.tileSize};
+        setFloatingTile(currentFloatingTile);
+        console.log(floatingTile);
+        console.log(currentFloatingTile);
+    }
+
     return (
         <div>
             <div className={"scores-lives"}>
                 <span>Score: 0</span><br/>
                 <span>Lives: 3</span>
             </div>
-            <table className="tilemap">
-                {getTilemap.map((tileRow, y) => {
-                    return (
-                    <tr className="tilerow" key={y}>
-                        {tileRow.map((tile, x) => {
-                            return (
-                            <td className="tile" key={x}></td>
-                            )
-                        })}
-                    </tr>
-                    )
-                })}
-            </table>
+            <div className="level-container">
+                <table className="tilemap">
+                    <tbody>
+                    {tilemap.map((tileRow, y) => {
+                        return (
+                            <tr className="tilerow" key={y}>
+                                {tileRow.map((tile, x) => {
+                                    return (
+                                        <td className="tile" key={x}
+                                            style={ debugState && tile.wall ? {backgroundColor: "rgba(255,255,0,30%)"} : {} }
+                                        ></td>
+                                    )
+                                })}
+                            </tr>
+                        )
+                    })}
+                    </tbody>
+                </table>
+                <div className="floating-tile"
+                     style={{
+                         // backgroundColor: debugState ? "rgba(0,255,0,30%)" : "",
+                         border: debugState ? "1px rgb(0,255,0) solid" : "",
+                         top: floatingTile.y,
+                         left: floatingTile.x
+                     }}
+                ></div>
+            </div>
         </div>
         //saveScore(currentScore);
     );
