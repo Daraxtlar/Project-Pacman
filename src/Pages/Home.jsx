@@ -1,10 +1,11 @@
 import React from "react";
 import GameWithMenu from "../components/GameWithMenu.jsx";
+import "./Home.css"
 
-function Home() {
+function Home({ setUsername }) {
     return (
-        <div style={{ backgroundColor: 'black', color:"white",textAlign:"center",width:"1024px",height:"720px"}}>
-            <GameWithMenu/>
+        <div className={"home-style"}>
+            <GameWithMenu setUsername={setUsername} />
         </div>
 
     );

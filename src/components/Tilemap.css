@@ -1,0 +1,46 @@
+.level-container {
+    position: relative;
+    width: 672px; /* 32px * 21 = 672 */
+    height: 544px; /* 32px * 17 = 544 */
+    margin: auto;
+    margin-top: 8%;
+    padding: 0;
+}
+
+.tilemap {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-image: url("../../sprites/tilemap_background.png");
+}
+
+.tilerow {
+    width: 627px;
+    height: 32px;
+    clear: both;
+    margin: 0;
+    padding: 0;
+}
+
+.tile {
+    width: 32px;
+    height: 32px;
+    float: left;
+    margin: 0;
+    padding: 0;
+    /*border: 1px red solid;*/
+}
+
+.floating-tile {
+    width: 32px;
+    height: 32px;
+    margin: 0;
+    padding: 0;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    background-image: url("../../sprites/pacman/gifs/base.gif");
+}

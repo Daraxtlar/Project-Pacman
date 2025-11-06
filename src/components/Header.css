@@ -1,0 +1,32 @@
+.header-navbar {
+    background-color: #000033;
+    border-bottom: 4px solid #FFA500;
+    min-height: 105px;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-box {
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+.header-info {
+    background-color: black;
+    padding: 20px;
+    font-size: 1.2rem;
+    border-radius: 2%;
+}
+
+.header-brand {
+    font-size: 2rem !important;
+    color: #FFA500 !important;
+    font-weight: bold !important;
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+}
