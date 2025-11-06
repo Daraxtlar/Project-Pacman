@@ -12,7 +12,7 @@
     height: 100%;
     margin: 0;
     padding: 0;
-    background-image: url("../../img/tilemap_background.png");
+    background-image: url("../../sprites/tilemap_background.png");
 }
 
 .tilerow {
@@ -42,5 +42,5 @@
     left: 0;
     top: 0;
 
-    background-image: url("../../img/base3.gif");
+    background-image: url("../../sprites/pacman/gifs/base.gif");
 }
