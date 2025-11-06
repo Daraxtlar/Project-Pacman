@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 function ScoresPage() {
     const [scores, setScores] = useState([]);
 
@@ -13,7 +13,9 @@ function ScoresPage() {
             console.error(err);
         }
     };
-
+    useEffect(() => {
+        fetchScores();
+    }, []);
     return (
         <div  id={"scores"}>
             <h3 className="mb-3">🏆 Best Scores</h3>
