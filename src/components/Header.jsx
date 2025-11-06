@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Navbar, Container } from "react-bootstrap";
-import "./pacman.css"
+import "./PacmanLogo.css"
 import "./Header.css"
 
 function Header({username}) {

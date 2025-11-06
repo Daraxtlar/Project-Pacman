@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Game from "./Game.jsx";
 import Login from "./Login.jsx";
 import Scores from "./Scores.jsx";
-import "./menu.css";
+import "./Menu.css";
 import "./Header.css";
 import GameOver from "./GameOver.jsx";
 
@@ -21,8 +21,7 @@ function GameWithMenu() {
 
     return (
         <div
-            className="position-relative main-div"
-        >
+            className="position-relative main-div">
             <Game />
 
             {showGameOver && (
@@ -33,17 +32,14 @@ function GameWithMenu() {
             {(!menuOpen || activeMenu !== null) && (
                 <button
                     className="buttons btn-open-menu"
-                    onClick={openMenu}
-                >
+                    onClick={openMenu}>
                     {activeMenu ? "Back To Menu" : "Menu"}
                 </button>
             )}
 
             {menuOpen && (
                 <div
-                    className="d-flex flex-column justify-content-center align-items-center menu-open-div"
-
-                >
+                    className="d-flex flex-column justify-content-center align-items-center menu-open-div">
                     <h2 className="text-white mb-3">Pause Menu</h2>
 
                     {!activeMenu && (

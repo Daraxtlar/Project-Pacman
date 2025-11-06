@@ -58,7 +58,6 @@ function GameOver({ onPlayAgain }) {
             )}
             {!showPacmanDeathAnimation&&(
                 <>
-
                     <div id="GameOver">
                         {showPacman && (
                             <div className="pacmanAnim">
@@ -70,8 +69,7 @@ function GameOver({ onPlayAgain }) {
                             <span
                                 key={i}
                                 className={`letter ${eatenLetters.includes(i) ? "eaten" : ""}`}
-                                aria-hidden={char === " " ? "true" : "false"}
-                            >
+                                aria-hidden={char === " " ? "true" : "false"}>
                         {char}
                     </span>
                         ))}
