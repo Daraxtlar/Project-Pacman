@@ -8,20 +8,23 @@ function GameOver({ onPlayAgain }) {
     const [eatenLetters, setEatenLetters] = useState([]);
     const [showPacman, setShowPacman] = useState(false);
     const [showPacmanDeathAnimation, setShowPacmanDeathAnimation] = useState(false);
-
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false);
     useEffect(() => {
         setShowPacmanDeathAnimation(true);
         const timer = setTimeout(() => {
             setShowPacmanDeathAnimation(false);
+            setIsButtonDisabled(false);
         }, 1000);
 
         return () => clearTimeout(timer);
     }, []);
 
     const handlePlayAgain = () => {
+        if (isButtonDisabled) return;
+
         setEatenLetters([]);
         setShowPacman(true);
-
+        setIsButtonDisabled(true);
         let idx = -1;
         const len = LETTERS.length;
 
@@ -75,7 +78,7 @@ function GameOver({ onPlayAgain }) {
                         ))}
                     </div>
                     <div>
-                        <p>Twój wynik : 000000</p>
+                        <p>Your Score : 000000</p>
                     </div>
                     <Scores />
 
