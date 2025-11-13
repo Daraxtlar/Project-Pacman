@@ -8,6 +8,7 @@ function Game() {
     const [tilemap, setTilemap] = useState([]);
     const [floatingTile, setFloatingTile] = useState({x: 10*tilemapSize.tileSize, y: 9*tilemapSize.tileSize});
     const [debugState, setDebug] = useState(false);
+    const [playerPos, setPlayerPos] = useState({ x: 10, y: 9 });
 
     const saveScore = async (score) => {
         try {
@@ -82,6 +83,39 @@ function Game() {
         console.log(floatingTile);
         console.log(currentFloatingTile);
     }
+
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            let dx = 0, dy = 0;
+
+            if (e.key === "w" || e.key === "ArrowUp") dy = -1;
+            else if (e.key === "s" || e.key === "ArrowDown") dy = 1;
+            else if (e.key === "a" || e.key === "ArrowLeft") dx = -1;
+            else if (e.key === "d" || e.key === "ArrowRight") dx = 1;
+            else return;
+
+            const newX = playerPos.x + dx;
+            const newY = playerPos.y + dy;
+
+            if (
+                newY >= 0 && newY < tilemapSize.y &&
+                newX >= 0 && newX < tilemapSize.x &&
+                !tilemap[newY][newX].wall
+            ) {
+                setPlayerPos({ x: newX, y: newY });
+                setFloatingTile({
+                    x: newX * tilemapSize.tileSize,
+                    y: newY * tilemapSize.tileSize
+                });
+            } else {
+                console.log("Kolizja!");
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [playerPos, tilemap]);
+
 
     return (
         <div>
