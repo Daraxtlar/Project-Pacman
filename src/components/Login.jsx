@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function LoginPage() {
+function LoginPage({ setUsername, closeMenu }) {
     const [username, setLocalUsername] = useState("");
     const [password, setPassword] = useState("");
 
@@ -19,7 +19,7 @@ function LoginPage() {
             alert(data.message);
             if (data.status === 'ok') {
                 setUsername(username);
-                setMenuOpen(false); // zamykamy menu po poprawnym loginie/rejestracji
+                closeMenu(); // zamykamy menu po poprawnym loginie/rejestracji
             }
         } catch (err) {
             console.error(err);

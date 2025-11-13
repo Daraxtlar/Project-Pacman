@@ -10,9 +10,11 @@ function App() {
     return (
         <Router>
             <div className="d-flex flex-column min-vh-100 ">
-                <AppNavbar  username={username} />
+                <AppNavbar username={username} />
                 <main className="flex-grow-1 d-flex justify-content-center align-items-center">
-                        <Home setUsername={setUsername} />
+                    <Routes>
+                        <Route path="/" element={<Home setUsername={setUsername} />} />
+                    </Routes>
                 </main>
                 <Footer />
             </div>

@@ -6,7 +6,7 @@ import "./Menu.css";
 import "./Header.css";
 import GameOver from "./GameOver.jsx";
 
-function GameWithMenu() {
+function GameWithMenu({ setUsername }) {
     const [menuOpen, setMenuOpen] = useState(false);
     const [activeMenu, setActiveMenu] = useState(null);
     const [username, setLocalUsername] = useState("");
@@ -17,6 +17,35 @@ function GameWithMenu() {
     const openMenu = () => {
         setMenuOpen(true);
         setActiveMenu(null);
+    };
+    const handleLogin = async () => {
+        try {
+            const res = await fetch('http://localhost:3001/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username: username, password: password })
+            });
+            const data = await res.json();
+            alert(data.message);
+            if (data.status === 'ok') {
+                setUsername(username);
+                setMenuOpen(false); // zamykamy menu po poprawnym loginie/rejestracji
+            }
+        } catch (err) {
+            console.error(err);
+            alert('Błąd połączenia z serwerem');
+        }
+    };
+    const fetchScores = async () => {
+        try {
+            const res = await fetch('http://localhost:3001/scores');
+            const data = await res.json();
+            if (data.status === 'ok') {
+                setScores(data.scores);
+            }
+        } catch (err) {
+            console.error(err);
+        }
     };
 
     return (
@@ -50,14 +79,20 @@ function GameWithMenu() {
                             <button className="buttons" onClick={() => setMenuOpen(false)}>
                                 Play
                             </button>
-                            <button className="buttons" onClick={() => setActiveMenu("scores")}>
+                            <button className="buttons" onClick={() => { setActiveMenu("scores"); fetchScores(); }}>
                                 Scores
                             </button>
                         </>
                     )}
 
                     {activeMenu === "login" && (
-                        <Login onBack={() => setActiveMenu(null)} />
+                        // <Login onBack={() => setActiveMenu(null)} />
+                        <Login
+                            onBack={() => setActiveMenu(null)}
+                            setUsername={setUsername}
+                            closeMenu={() => setMenuOpen(false)}
+                        />
+
                     )}
 
                     {activeMenu === "scores" && (
