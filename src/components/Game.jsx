@@ -42,19 +42,32 @@ function Game() {
             {x: 10, y: 12}, {x: 10, y: 11}, {x: 8, y: 10}, {x: 9, y: 10}, {x: 10, y: 10},
             {x: 9, y: 6}, {x: 8, y: 6}, {x: 8, y: 7}, {x: 8, y: 8}, {x: 9, y: 8}, {x: 10, y: 8},
         ];
+        const bigPointPositions = [
+            {x: 1, y: 3}, {x: 19, y: 3},
+            {x: 3, y: 13}, {x: 17, y: 13}
+        ];
+
         let createdTilemap = [];
 
         for (let j = 0; j < tilemapSize.y; j++) {
             createdTilemap[j] = [];
             for (let i = 0; i < tilemapSize.x; i++) {
+                const isWall = (
+                    wallPositions.some(wall =>
+                        ( (wall.x === i || wall.x === tilemapSize.x-i-1 ) && wall.y === j)
+                    ) ||
+                    (i === 0 || i === tilemapSize.x-1) ||
+                    (j === 0 || j === tilemapSize.y-1)
+                );
+                const hasBigPoint = bigPointPositions.some(bigPoint =>
+                    bigPoint.x === i && bigPoint.y === j
+                )
+                const hasPoint = !isWall && !hasBigPoint && (i < 7 || i > 13 || j < 5 || j > 9)
+
                 createdTilemap[j][i] = {
-                    wall: (
-                        wallPositions.some(wall =>
-                            ( (wall.x === i || wall.x === tilemapSize.x-i-1 ) && wall.y === j)
-                        ) ||
-                        (i === 0 || i === tilemapSize.x-1) ||
-                        (j === 0 || j === tilemapSize.y-1)
-                    )
+                    wall: isWall,
+                    point: hasPoint,
+                    bigPoint: hasBigPoint
                 };
             }
         }
@@ -82,6 +95,20 @@ function Game() {
         console.log(floatingTile);
         console.log(currentFloatingTile);
     }
+    window.regenerateTilemap = () => {
+        generateTilemap()
+    }
+
+    const debugTileStyle = (tile) => {
+        if (tile.wall)
+            return {backgroundColor: "rgba(255,255,0,30%)"}
+        else if (tile.point)
+            return {backgroundColor: "rgba(0,255,0,30%)"}
+        else if (tile.bigPoint)
+            return {backgroundColor: "rgba(0,255,255,30%)"}
+        else
+            return {}
+    }
 
     return (
         <div>
@@ -98,7 +125,7 @@ function Game() {
                                 {tileRow.map((tile, x) => {
                                     return (
                                         <td className="tile" key={x}
-                                            style={ debugState && tile.wall ? {backgroundColor: "rgba(255,255,0,30%)"} : {} }
+                                            style={ debugState ? debugTileStyle(tile) : {}}
                                         ></td>
                                     )
                                 })}
